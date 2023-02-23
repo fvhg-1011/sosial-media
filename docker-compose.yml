@@ -33,4 +33,3 @@ services:
       MYSQL_HOST: "sosmed-contoh"
     volumes:
           -./dump.sql:/docker-entrypoint-initdb.d/dump.sql
-        # - /home/favian/Documents/sekolah-devops/06-Container/sosial-media/dump.sql:/var/lib/mysql/dump.sql
