@@ -1,0 +1,36 @@
+version: "3.9"
+services: 
+  sosmed-contoh:
+    image: sosmed
+    ports: 
+    - 80:80
+    environment:
+      DB_HOST: "mysql-contoh"
+      # DB_USERNAME: "devopscilsy"
+      # DB_PASSWORD: "1234567890"
+      # DB_NAME: "dbsosmed"
+      DB_USERNAME: "favianhugo"
+      DB_PASSWORD: "favianhugo27"
+      DB_NAME: "db_favian"
+    depends_on:
+      - mysql-contoh
+
+
+  mysql-contoh:
+    image: mysql
+    ports: 
+    - 3308:3306
+    environment:
+      # MYSQL_ROOT_PASSWORD: "favianhugo27" 
+      # MYSQL_USER: "devopscilsy"
+      # MYSQL_PASSWORD: "1234567890"
+      # MYSQL_DATABASE: "dbsosmed"
+      # MYSQL_HOST: "sosmed-contoh"
+      MYSQL_ROOT_PASSWORD: "favianhugo27" 
+      MYSQL_USER: "favianhugo"
+      MYSQL_PASSWORD: "favianhugo27"
+      MYSQL_DATABASE: "db_favian"
+      MYSQL_HOST: "sosmed-contoh"
+    volumes:
+          -./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+        # - /home/favian/Documents/sekolah-devops/06-Container/sosial-media/dump.sql:/var/lib/mysql/dump.sql
