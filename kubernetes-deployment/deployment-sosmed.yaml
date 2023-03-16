@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # creationTimestamp: null
+  labels:
+    app: sosmed-deploy
+  name: sosmed-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sosmed-deploy
+  strategy: {}
+  template:
+    metadata:
+      # creationTimestamp: null
+      labels:
+        app: sosmed-deploy
+    spec:
+      containers:
+      - image: giovana02/sosmed
+        name: sosmed
+        ports:
+          - containerPort: 80
+        env:
+          - name: DB_HOST
+            value: db-jakarta.c1h14jljsded.ap-southeast-3.rds.amazonaws.com
+          - name: DB_USERNAME
+            value: admin
+          - name: DB_PASSWORD
+            value: favianhugo
+          - name: DB_NAME
+            value: sosmed
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  # creationTimestamp: null
+  labels:
+    app: sosmed-deploy
+  name: sosmed-deploy
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: sosmed-deploy
+  type: LoadBalancer
+status:
+  loadBalancer: {}

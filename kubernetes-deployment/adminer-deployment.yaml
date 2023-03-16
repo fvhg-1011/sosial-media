@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: adminer-deploy
+  name: adminer-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adminer-deploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: adminer-deploy
+    spec:
+      containers:
+      - image: adminer
+        name: adminer
+        ports:
+          - containerPort: 8080
+        resources: {}
+status: {}
